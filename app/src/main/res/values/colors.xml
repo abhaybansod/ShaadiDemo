@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#ff5a60</color>
+    <color name="colorPrimaryDark">#ff5a60</color>
+    <color name="colorAccent">#ff5a60</color>
+    <color name="circleCircle">#71d1e5</color>
+
+
+
+
+</resources>

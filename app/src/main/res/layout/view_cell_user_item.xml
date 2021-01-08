@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.abhay.shaadi.presentation.model.UiUserResult" />
+
+        <variable
+            name="clickHandler"
+            type="com.abhay.library.base.presentation.adapter.base.BaseBindClickHandler" />
+
+        <variable
+            name="favoriteClickHandler"
+            type="com.abhay.shaadi.ui.list.interfaces.UserItemListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvUserContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(v) -> clickHandler.onClickView(v, item)}"
+        card_view:cardCornerRadius="@dimen/dp_10"
+        card_view:cardElevation="@dimen/dp_10"
+        card_view:cardUseCompatPadding="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="@dimen/dp_400">
+
+            <ImageView
+                android:id="@+id/ivUserImage"
+                android:layout_width="378dp"
+                android:layout_height="330dp"
+                android:layout_marginTop="@dimen/dp_4"
+                android:contentDescription="@string/itemNewsDescription"
+                android:scaleType="centerCrop"
+                android:transitionName="firstTransitionName"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintHorizontal_bias="0.0"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintVertical_bias="0.031"
+                bind:setImageUrl="@{item.largeImageUrl}"
+                tools:ignore="UnusedAttribute"
+                bind:layout_constraintCircleRadius="@dimen/dp_10"
+                tools:src="@tools:sample/avatars" />
+
+
+            <TextView
+                android:id="@+id/tvAgeGender"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="96dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:padding="@dimen/dp_4"
+                android:text="@{item.age +` year, ` +item.gender}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintHorizontal_bias="0.0"
+                bind:layout_constraintStart_toStartOf="parent"
+                tools:ignore="UnusedAttribute"
+                tools:text="@tools:sample/first_names" />
+
+            <TextView
+                android:id="@+id/tvPlace"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="76dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:padding="@dimen/dp_4"
+                android:text="@{item.city +` year, ` +item.country}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintHorizontal_bias="0.0"
+                bind:layout_constraintStart_toStartOf="parent"
+                tools:ignore="UnusedAttribute"
+                tools:text="@tools:sample/first_names" />
+
+            <TextView
+                android:id="@+id/tvAge"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="116dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:padding="@dimen/dp_4"
+                android:text="@{item.fullName}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintHorizontal_bias="0.0"
+                bind:layout_constraintStart_toStartOf="parent"
+                tools:ignore="UnusedAttribute"
+                tools:text="@tools:sample/first_names" />
+
+            '
+
+            <ImageView
+                android:id="@+id/ivFavorite"
+                android:layout_width="@dimen/dp_72"
+                android:layout_height="@dimen/dp_72"
+                android:layout_gravity="end"
+                android:layout_marginTop="304dp"
+                android:layout_marginEnd="116dp"
+                android:layout_marginRight="116dp"
+                android:animateLayoutChanges="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="@{() -> favoriteClickHandler.onFavoriteClick(item)}"
+                android:padding="@dimen/dp_4"
+                android:src="@drawable/ic_checked"
+                android:visibility="@{item.isAccepted==true || item.isDeclined==true ? View.GONE : View.VISIBLE }"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute"
+                tools:src="@drawable/ic_checked" />
+
+
+            <ImageView
+                android:id="@+id/ivNotFavorite"
+                android:layout_width="@dimen/dp_72"
+                android:layout_height="@dimen/dp_72"
+                android:layout_gravity="end"
+                android:layout_marginTop="304dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:animateLayoutChanges="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="@{() -> favoriteClickHandler.onNotFavoriteClick(item)}"
+                android:padding="@dimen/dp_4"
+                android:src="@drawable/ic_cancel_black"
+                android:visibility="@{item.isAccepted==true || item.isDeclined==true ? View.GONE : View.VISIBLE }"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute"
+                tools:src="@drawable/ic_cancel_black" />
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:padding="@dimen/dp_10"
+                android:text="@{item.isAccepted==true || item.isDeclined==true ? (item.isDeclined==true ? @string/declined  : @string/accepted ) : @string/like_this_profile }"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/sp_13"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintEnd_toStartOf="@+id/ivFavorite"
+                bind:layout_constraintHorizontal_bias="0.0"
+                bind:layout_constraintStart_toStartOf="parent"
+                tools:ignore="UnusedAttribute" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
